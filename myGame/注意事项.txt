@@ -1,0 +1,3 @@
+1。界面制作流程－创建exml，创建对应ts并继承viewCtl，在default.thm.json里面设置下皮肤
+2.继承viewCtl的在onComplete中初始化，在show中设置，前者只创建的时候调用一次，后者每次打开都会调用，关闭界面要用PopUpMag.ins().remove（），不要直接this.close();
+3.

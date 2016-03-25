@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="MainBtnSkin" width="180" height="60" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image x="0" y="0" source="mainBtnBkg"/>
+	<e:Image id="iconImg" x="3" y="4" source="gold_btn"/>
+	<e:Label id="lab" x="59" y="15" width="101" textAlign="left" height="31"/>
+</e:Skin>

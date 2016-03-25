@@ -1,0 +1,14 @@
+1、接入nest：
+	1、修改nest相关请清理缓存，egret b -e -clean，有些报错是因为这个
+	2、EgretH5Sdk相关报错，请在index.html中加入这段代码，因为url需要有个测试渠道，正式默认有不需要
+	<script>
+        	if(location.href.indexOf("192.168")>-1&&location.search=="")
+        	{
+        	    location.search="?platInfo=open_389_9166";
+        	}
+    	</script>
+
+2、第三方类库需要放到项目外面
+
+3，360pc浏览器报错问题，http://se.360.cn/v6/help/meta.html，告诉浏览器切换极速模式
+4,打开页面等api查看window.location.href = Global.MORE_GAME_URL;

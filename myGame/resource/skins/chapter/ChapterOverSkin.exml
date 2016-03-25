@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="ChapterOverSkin" width="600" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="600" source="startChapterBkg" height="600" x="10" y="10"/>
+	<ns1:BaseBtn id="sureBtn" x="209" y="428"/>
+	<ns1:BaseBtn id="closeBtn" y="51" x="439"/>
+	<e:Label id="resultLab" text="标签" y="130" size="60" width="242" textAlign="center" horizontalCenter="0"/>
+</e:Skin>
