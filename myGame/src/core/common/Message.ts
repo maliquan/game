@@ -52,7 +52,7 @@ class Message {
      * @param cmd 消息类型
      * @param data 数据
      */
-    send(cmd:number, data:any = null):void {
+    localSend(cmd:number, data:any = null):void {
         var list:IMessage[] = this.msgMap.get(cmd);
         if (list) {
             var len:number = list.length;
@@ -70,4 +70,13 @@ class Message {
             }
         }
     }
+
+    public httpSend():void{
+
+    }
+
+    public socketSend():void{
+
+    }
+
 }

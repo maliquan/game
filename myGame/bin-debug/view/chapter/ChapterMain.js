@@ -10,18 +10,18 @@ var ChapterMain = (function (_super) {
     };
     p.show = function () {
         _super.prototype.show.call(this);
-        Message.instance.add(MsgId.CHAPTER_OVER, this);
+        Message.instance.add(LocalId.CHAPTER_OVER, this);
         this.chapterId = this.showData;
         this.chapterMag = new ChapterMag();
         this.chapterMag.show(this.chapterId, this);
     };
     p.close = function () {
         _super.prototype.close.call(this);
-        Message.instance.remove(MsgId.CHAPTER_OVER, this);
+        Message.instance.remove(LocalId.CHAPTER_OVER, this);
     };
     p.recvMsg = function (cmd, data) {
         switch (cmd) {
-            case MsgId.CHAPTER_OVER:
+            case LocalId.CHAPTER_OVER:
                 PopUpMag.ins().showWin(WinName.CHAPTER_OVER, 5, true, { isWin: data.isWin, starNum: 3, chapterId: this.chapterId });
                 break;
         }

@@ -47,7 +47,7 @@ var Message = (function () {
      * @param cmd 消息类型
      * @param data 数据
      */
-    p.send = function (cmd, data) {
+    p.localSend = function (cmd, data) {
         if (data === void 0) { data = null; }
         var list = this.msgMap.get(cmd);
         if (list) {
@@ -65,6 +65,10 @@ var Message = (function () {
                 this.msgMap.remove(cmd);
             }
         }
+    };
+    p.httpSend = function () {
+    };
+    p.socketSend = function () {
     };
     return Message;
 })();

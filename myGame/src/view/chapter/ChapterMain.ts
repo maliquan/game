@@ -9,7 +9,7 @@ class ChapterMain extends ViewCtl implements IMessage{
 
     public show():void{
         super.show();
-        Message.instance.add(MsgId.CHAPTER_OVER, this);
+        Message.instance.add(LocalId.CHAPTER_OVER, this);
 
         this.chapterId = this.showData;
         this.chapterMag = new ChapterMag();
@@ -18,12 +18,12 @@ class ChapterMain extends ViewCtl implements IMessage{
 
     public close():void{
         super.close();
-        Message.instance.remove(MsgId.CHAPTER_OVER, this);
+        Message.instance.remove(LocalId.CHAPTER_OVER, this);
     }
 
     recvMsg(cmd:number, data:any):void {
         switch (cmd){
-            case MsgId.CHAPTER_OVER:
+            case LocalId.CHAPTER_OVER:
                 PopUpMag.ins().showWin(WinName.CHAPTER_OVER, 5, true, {isWin:data.isWin,starNum:3,chapterId:this.chapterId});
                 break;
         }

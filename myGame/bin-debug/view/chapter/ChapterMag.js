@@ -106,7 +106,7 @@ var ChapterMag = (function () {
             }
             this.ai.stop();
             this.clean();
-            Message.instance.send(MsgId.CHAPTER_OVER, result);
+            Message.instance.localSend(LocalId.CHAPTER_OVER, result);
             return;
         }
     };

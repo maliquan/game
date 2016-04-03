@@ -119,10 +119,20 @@ var Main = (function (_super) {
         PopUpMag.LAYER_POPUP.touchEnabled = false;
         PopUpMag.LAYER_POPUP.touchChildren = true;
         this.addChild(PopUpMag.LAYER_POPUP);
+        //        Message.instance.add(LocalId.SOCKET_CONNECT_SUCCESS, this);
         DataMag.instance.init();
         LangMag.instance.setData("language");
+        //        SocketMsg.instance.initSocket();
         PopUpMag.ins().showWin(WinName.LOGIN, 1, false, null, PopUpMag.LAYER_SCENE);
+    };
+    p.recvMsg = function (cmd, data) {
+        switch (cmd) {
+            case LocalId.SOCKET_CONNECT_SUCCESS:
+                Message.instance.remove(LocalId.SOCKET_CONNECT_SUCCESS, this);
+                console.log("WebSocketOpen");
+                break;
+        }
     };
     return Main;
 })(eui.UILayer);
-egret.registerClass(Main,'Main');
+egret.registerClass(Main,'Main',["IMessage"]);
