@@ -1,0 +1,36 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>node ws demo</title>
+</head>
+<body>
+	<form id="f">
+	<p id="info"></p>
+	<p><input type="text" id="nameLab"/></p>
+	<p><input type="text" id="msgLab"/></p>
+	<p><input type="submit" id="subBtn"/></p>
+	</form>
+	<script type="text/javascript">
+		function id(str){
+			return document.getElementById(str);
+		}
+		var f = id('f');
+		var nameLab = id('nameLab');
+		var msg = id('msgLab');
+		var info = id('info');
+		var sub = id('subBtn');
+		var ws = new WebSocket('ws://localhost:8888/');
+		ws.onopen = function(){
+			info.innerHTML = '连接成功建立<br/>';
+		}
+		ws.onmessage = function(e){
+			info.innerHTML += e.data+'<br/>';
+		}
+		f.onsubmit = function(){
+			ws.send(nameLab.value+":"+msg.value);
+			return false;
+		}
+	</script>
+</body>
+</html>

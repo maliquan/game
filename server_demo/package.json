@@ -1,0 +1,21 @@
+{
+  "name": "maliquannode",
+  "description": "getting started with nodejs on sinacloud platform",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "maliquan",
+    "email": "saemail@sina.cn"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "ws": "^1.0.1"
+  },
+  "engines": {
+    "node": "5.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
