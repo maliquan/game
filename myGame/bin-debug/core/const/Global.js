@@ -10,7 +10,7 @@ var Global = (function () {
     Global.GAME_H = 960;
     Global.STAGE_W = 0;
     Global.STAGE_H = 0;
-    Global.BASE_URL = "";
+    Global.BASE_URL = "http://localhost:3000";
     return Global;
 })();
 egret.registerClass(Global,'Global');

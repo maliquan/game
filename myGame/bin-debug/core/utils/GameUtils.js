@@ -321,34 +321,6 @@ var GameUtils = (function () {
         document.getElementsByTagName('head')[0].appendChild(script);
     };
     /**
-     * Http请求
-     * @param url
-     * @param params
-     * @param success
-     * @param error
-     * @param thisObject
-     */
-    GameUtils.httpReqs = function (url, params, success, error, thisObject) {
-        if (egret.MainContext.runtimeType == egret.MainContext.RUNTIME_HTML5) {
-            HttpMag.instance.send(url, params, success, error, thisObject);
-        }
-        else {
-            var loader = new egret.URLLoader();
-            loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
-            var reqs = new egret.URLRequest(url);
-            reqs.method = egret.URLRequestMethod.GET;
-            var dataStr = GameUtils.objectToUrlParam(params);
-            reqs.data = new egret.URLVariables(dataStr);
-            loader.addEventListener(egret.Event.COMPLETE, function (e) {
-                success.call(thisObject, JSON.parse(e.target.data));
-            }, this);
-            loader.addEventListener(egret.IOErrorEvent.IO_ERROR, function (e) {
-                error.call(thisObject, null, null, null);
-            }, this);
-            loader.load(reqs);
-        }
-    };
-    /**
      * 设置对象的锚点
      */
     GameUtils.setAnchor = function (obj, x, y) {

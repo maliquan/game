@@ -11,6 +11,6 @@ class Global {
 
     public static STAGE:egret.Stage;
 
-    public static BASE_URL:string = ""
+    public static BASE_URL:string = "http://localhost:3000"
 	
 }

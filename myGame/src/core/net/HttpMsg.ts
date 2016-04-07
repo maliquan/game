@@ -31,23 +31,18 @@ class HttpMsg {
      * @param thisObject
      * @param isWait 是否等待消息返回
      */
-    send(url:string, params:any, callBack:Function, thisObject:any, isWait:boolean = true):void {
-        //-------------------debug----------------------
-        callBack.call(thisObject, Server.request(url, params));
-        return;
-        //-------------------debug----------------------
-        if (isWait) {
-            var index = this.reqsList[0] * 5;
-            this.reqsList[index + 1] = url;
-            this.reqsList[index + 2] = params;
-            this.reqsList[index + 3] = callBack;
-            this.reqsList[index + 4] = thisObject;
-            this.reqsList[index + 5] = isWait;
-            this.reqsList[0]++;
-            this.checkData();
-        } else {
-            this.sendData([url, params, callBack, thisObject, isWait]);
-        }
+    send(url:string, params:any, callBack:Function, thisObject:any):void {
+//        //-------------------debug----------------------
+//        callBack.call(thisObject, Server.request(url, params));
+//        return;
+//        //-------------------debug----------------------
+        var index = this.reqsList[0] * 5;
+        this.reqsList[index + 1] = url;
+        this.reqsList[index + 2] = params;
+        this.reqsList[index + 3] = callBack;
+        this.reqsList[index + 4] = thisObject;
+        this.reqsList[0]++;
+        this.checkData();
     }
 
     /**
@@ -56,7 +51,7 @@ class HttpMsg {
     private checkData():void {
         if (!this.isReqs && this.reqsList[0] > 0) {
             this.reqsList[0]--;
-            var nowList:any[] = this.reqsList.splice(1, 5);
+            var nowList:any[] = this.reqsList.splice(1, 4);
             this.sendData(nowList);
         }
     }
@@ -70,17 +65,16 @@ class HttpMsg {
         var params:any = data[1] || {};
         var callBack:Function = data[2];
         var thisObject:any = data[3];
-        var isWait:boolean = data[4];
         //请求唯一ID
         params.reqsId = ++this.reqsId;
         var thatObjects = this;
         var errCount:number = 0;
 
-        function success(data):void {
+        function success(event: egret.Event):void {
+            var loader: egret.URLLoader = <egret.URLLoader>event.target;
+            var data: egret.URLVariables = loader.data;
             console.log(data);
-            if (isWait) {
-                thatObjects.isReqs = false;
-            }
+            thatObjects.isReqs = false;
             if (data) {
                 //请求成功
                 if (callBack) {
@@ -92,16 +86,22 @@ class HttpMsg {
 
         function error(xhr:XMLHttpRequest, errorType:string, err:Error):void {
             console.log("net error");
-            if (isWait) {
-                thatObjects.isReqs = false;
-            }
+            thatObjects.isReqs = false;
             thatObjects.checkData();
         }
 
-        if (isWait) {
-            thatObjects.isReqs = true;
-        }
-        GameUtils.httpReqs(Global.BASE_URL + url, params, success, error, this);
+        thatObjects.isReqs = true;
+
+        var urls: string = Global.BASE_URL + url;
+        var loader: egret.URLLoader = new egret.URLLoader();
+        //loader.dataFormat = egret.URLLoaderDataFormat.VARIABLES;
+        loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
+        loader.addEventListener(egret.Event.COMPLETE,success,this);
+        loader.addEventListener(egret.IOErrorEvent.IO_ERROR, error, this);
+        var request: egret.URLRequest = new egret.URLRequest(urls);
+        request.method = egret.URLRequestMethod.POST;
+        request.data = new egret.URLVariables(GameUtils.objectToUrlParam(params));
+        loader.load(request);
     }
 
     /**

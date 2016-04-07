@@ -309,37 +309,6 @@ class GameUtils {
     }
 
     /**
-     * Http请求
-     * @param url
-     * @param params
-     * @param success
-     * @param error
-     * @param thisObject
-     */
-    static httpReqs(url:string, params:any, success:Function, error:Function, thisObject:any):void {
-        if (egret.MainContext.runtimeType == egret.MainContext.RUNTIME_HTML5) {
-           HttpMag.instance.send(url, params, success, error, thisObject);
-        } else {
-            var loader = new egret.URLLoader();
-            loader.dataFormat = egret.URLLoaderDataFormat.TEXT;
-            var reqs = new egret.URLRequest(url);
-            reqs.method = egret.URLRequestMethod.GET;
-            var dataStr = GameUtils.objectToUrlParam(params);
-            reqs.data = new egret.URLVariables(dataStr);
-
-            loader.addEventListener(egret.Event.COMPLETE, function (e:egret.Event):void {
-                success.call(thisObject, JSON.parse(e.target.data));
-            }, this);
-
-            loader.addEventListener(egret.IOErrorEvent.IO_ERROR, function (e:egret.IOErrorEvent):void {
-                error.call(thisObject, null, null, null);
-            }, this);
-
-            loader.load(reqs);
-        }
-    }
-
-    /**
      * 设置对象的锚点
      */
     static setAnchor(obj:any, x:number, y:number):void{
