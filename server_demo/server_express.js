@@ -13,6 +13,7 @@ app.all('*', function(req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
+
 //获取clien通过post传过来的参数，需要这句
 app.use(bodyParser.urlencoded({ extended: false })); 
 

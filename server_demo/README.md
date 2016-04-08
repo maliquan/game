@@ -1,33 +1,15 @@
-# NodeJS应用示例
+1，sudo npm install nodemon -g //全局安装server调试工具，启动server可以nodemon xx.js
+2，app.use(express.static('160330102348')); //设置资源根目录
+3，app.get("/", function(req, res){
+  fs.readFile("./160330102348/index.html", "utf-8", function(err, data){
+    if(err){
+      res.send(err);
+    }else{
+      res.send(data);
+    }
+  });
+});
+app.listen(3000);
+//访问根目录的时候，读取某个文件内容返回，如果没有"utf-8"则提示下载
 
-## 本地运行
-
-```
-$ git clone https://github.com/sinacloud/nodejs-getting-started.git
-$ cd nodejs-getting-started
-$ npm install
-$ npm start
-```
-
-现在，本示例应用已经跑在了你的 localhost:5050 端口上了。
-
-## 部署到sinacloud
-
-首先，提交代码到你的sinacloud应用的git仓库。
-
-```
-$ git remote add sinacloud $GIT_REPOS_URL_FOR_YOUR_APPLICATIRON
-$ git push sinacloud master:1
-```
-
-登陆sinacloud容器云的管理页面，在部署页面中，点击部署。
-
-部署完成之后，你就可以通过 http://$APPNAME.sinaapp.com 来访问你的应用了。
-
-## 更多示例
-
-本git仓库的其它分支里还包含了Socket.io、MySQL服务、Memcached服务等的使用示例。
-
-## 相关文档
-
-- [NodeJS应用部署指南](http://www.sinacloud.com/doc/sae/docker/nodejs-getting-started.html)
+4，nodejsAPI http://cnodejs.org/topic/548e53f157fd3ae46b2334fd
