@@ -2,10 +2,10 @@ var express = require("express");
 var fs = require("fs");
 var app = express();
 
-app.use(express.static('160330102348'));
+app.use(express.static('game'));
 
 app.get("/", function(req, res){
-  fs.readFile("./160330102348/index.html", "utf-8", function(err, data){
+  fs.readFile("./game/index.html", "utf-8", function(err, data){
     if(err){
       res.send(err);
     }else{
@@ -13,4 +13,4 @@ app.get("/", function(req, res){
     }
   });
 });
-app.listen(3000);
+app.listen(3001);
