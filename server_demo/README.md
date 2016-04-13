@@ -13,3 +13,4 @@ app.listen(3000);
 //访问根目录的时候，读取某个文件内容返回，如果没有"utf-8"则提示下载
 
 4，nodejsAPI http://cnodejs.org/topic/548e53f157fd3ae46b2334fd
+5,express及mongoDB教程http://www.tuicool.com/articles/jueARjE
