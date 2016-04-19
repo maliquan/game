@@ -1,11 +1,14 @@
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var ejs = require('ejs');
 var util = require("util");
 var querystring = require("querystring");
 var bodyParser = require("body-parser");
 var path = require('path');
+var user = require("./routes/user");
+
+//game
+var game_login = require('./routes/game/login');
 
 // var favicon = require('serve-favicon');
 
@@ -36,6 +39,8 @@ app.post('/login', routes.doLogin);// 处理post请求，表单提交
 app.get('/logout', routes.logout);// 处理注销
 app.get('/welcome', routes.welcome);// 进入到首页
 app.get('/users', user.list);
+//game
+app.post("/game/login", game_login.gameLogin)
 
 app.listen(3004);
 

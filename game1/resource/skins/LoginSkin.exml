@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="LoginSkin" width="640" height="960" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
+	<e:TextInput id="loginLab" y="318" width="381" x="141"/>
+	<ns1:BaseBtn id="loginBtn" y="468" x="217"/>
+	<ns1:BaseBtn id="loginBtn1" y="566" x="220"/>
+</e:Skin>

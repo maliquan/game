@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Egret</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            background: #888888;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+    <script>
+        if(location.href.indexOf("192.168")>-1&&location.search=="")
+        {
+            location.search="platInfo=open_88888_9166&egret.runtime.spid=9166&appId=88888&channelId=9166&egretSdkDomain=http://api.egret-labs.org/v2&egretServerDomain=http://api.egret-labs.org/v2";
+        }
+    </script>
+
+    <!--这个标签为通过egret提供的第三方库的方式生成的 javascript 文件。删除 modules_files 标签后，库文件加载列表将不会变化，请谨慎操作！-->
+    <!--modules_files_start-->
+	<script egret="lib" src="libs/modules/egret/egret.js" src-release="libs/modules/egret/egret.min.js"></script>
+	<script egret="lib" src="libs/modules/egret/egret.web.js" src-release="libs/modules/egret/egret.web.min.js"></script>
+	<script egret="lib" src="libs/modules/eui/eui.js" src-release="libs/modules/eui/eui.min.js"></script>
+	<script egret="lib" src="libs/modules/res/res.js" src-release="libs/modules/res/res.min.js"></script>
+	<script egret="lib" src="libs/modules/socket/socket.js" src-release="libs/modules/socket/socket.min.js"></script>
+	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
+	<script egret="lib" src="libs/modules/nest/nest.js" src-release="libs/modules/nest/nest.min.js"></script>
+	<script egret="lib" src="libs/modules/game/game.js" src-release="libs/modules/game/game.min.js"></script>
+	<script egret="lib" src="libs/modules/game/game.web.js" src-release="libs/modules/game/game.web.min.js"></script>
+	<!--modules_files_end-->
+
+    <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
+    <!--other_libs_files_start-->
+    <!--other_libs_files_end-->
+
+    <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
+    <!--game_files_start-->
+	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
+	<script egret="game" src="bin-debug/Main.js"></script>
+	<script egret="game" src="bin-debug/ThemeAdapter.js"></script>
+	<script egret="game" src="bin-debug/core/common/HashMap.js"></script>
+	<script egret="game" src="bin-debug/core/common/IMessage.js"></script>
+	<script egret="game" src="bin-debug/core/common/Message.js"></script>
+	<script egret="game" src="bin-debug/core/component/BaseBtn.js"></script>
+	<script egret="game" src="bin-debug/core/component/ViewCtl.js"></script>
+	<script egret="game" src="bin-debug/core/const/Global.js"></script>
+	<script egret="game" src="bin-debug/core/const/HttpId.js"></script>
+	<script egret="game" src="bin-debug/core/const/LocalId.js"></script>
+	<script egret="game" src="bin-debug/core/const/SocketId.js"></script>
+	<script egret="game" src="bin-debug/core/const/UserInfo.js"></script>
+	<script egret="game" src="bin-debug/core/const/WinName.js"></script>
+	<script egret="game" src="bin-debug/core/manager/DataMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/EnterFrameMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/LangMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/LoadMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/PopUpMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/SoundMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/TimerMag.js"></script>
+	<script egret="game" src="bin-debug/core/manager/entity/EnterFrameEntity.js"></script>
+	<script egret="game" src="bin-debug/core/manager/entity/ParserEntity.js"></script>
+	<script egret="game" src="bin-debug/core/manager/entity/TimeEntity.js"></script>
+	<script egret="game" src="bin-debug/core/manager/parser/IParser.js"></script>
+	<script egret="game" src="bin-debug/core/manager/parser/MainParser.js"></script>
+	<script egret="game" src="bin-debug/core/net/HttpMsg.js"></script>
+	<script egret="game" src="bin-debug/core/net/HttpMsgCMD.js"></script>
+	<script egret="game" src="bin-debug/core/net/SocketMsg.js"></script>
+	<script egret="game" src="bin-debug/core/net/socketVo/SLoginVo.js"></script>
+	<script egret="game" src="bin-debug/core/utils/GameUtils.js"></script>
+	<script egret="game" src="bin-debug/core/utils/MoveDataEntity.js"></script>
+	<script egret="game" src="bin-debug/core/utils/TweenUtils.js"></script>
+	<script egret="game" src="bin-debug/server/Server.js"></script>
+	<script egret="game" src="bin-debug/view/chapter/ChapterMag.js"></script>
+	<script egret="game" src="bin-debug/view/chapter/ChapterMain.js"></script>
+	<script egret="game" src="bin-debug/view/chapter/ChapterOver.js"></script>
+	<script egret="game" src="bin-debug/view/chapter/ChapterStart.js"></script>
+	<script egret="game" src="bin-debug/view/chapter/MoveMag.js"></script>
+	<script egret="game" src="bin-debug/view/loading/LoadingUI.js"></script>
+	<script egret="game" src="bin-debug/view/login/LoginCtl.js"></script>
+	<script egret="game" src="bin-debug/view/main/MainBtn.js"></script>
+	<script egret="game" src="bin-debug/view/main/MainScene.js"></script>
+	<script egret="game" src="bin-debug/view/main/MainTop.js"></script>
+	<script egret="game" src="bin-debug/view/main/map/ItemVo.js"></script>
+	<script egret="game" src="bin-debug/view/main/map/MapBtn.js"></script>
+	<script egret="game" src="bin-debug/view/main/map/MapGroup.js"></script>
+	<script egret="game" src="bin-debug/view/main/map/MapMag.js"></script>
+	<script egret="game" src="bin-debug/view/main/map/ParserMap.js"></script>
+	<script egret="game" src="bin-debug/view/main/map/ParserMapVo.js"></script>
+	<script egret="game" src="bin-debug/view/object/BaseAI.js"></script>
+	<script egret="game" src="bin-debug/view/object/BaseObj.js"></script>
+	<script egret="game" src="bin-debug/view/object/BaseSoldier.js"></script>
+	<script egret="game" src="bin-debug/view/object/Obj1.js"></script>
+	<script egret="game" src="bin-debug/view/object/ObjVo.js"></script>
+	<!--game_files_end-->
+</head>
+<body>
+
+    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+         data-entry-class="Main"
+         data-orientation="portrait"
+         data-scale-mode="fixedWidth"
+         data-frame-rate="30"
+         data-content-width="640"
+         data-content-height="960"
+         data-show-paint-rect="false"
+         data-multi-fingered="2"
+         data-show-fps="false" data-show-log="false"
+         data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
+    </div>
+    <script>
+        egret.runEgret();
+    </script>
+</body>
+</html>

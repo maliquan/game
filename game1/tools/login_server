@@ -1,0 +1,26 @@
+#!/usr/bin/expect -f 
+
+#使用 push_to_server ip username password ../release/release
+
+if { $argc != 4 }  {
+	send "echo login_server \[ip\] \[port\] \[username\] \[password\] \n"
+	exit 1
+}
+
+set ip [lindex $argv 0]
+set port [lindex $argv 1]
+set username [lindex $argv 2]
+set password [lindex $argv 3]
+
+set timeout 600 
+
+spawn ssh ${username}@${ip} -p ${port}
+expect {
+	"*assword*" {send "${password}\r"}
+}
+expect {
+	"*]$*" {
+		send "ls -lh\r";
+		interact;
+	 }
+}

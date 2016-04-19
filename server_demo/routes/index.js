@@ -1,6 +1,5 @@
+var User = require('../models/user').User;	//使用User模型，对应的users表
 var mongoose = require('mongoose') ;	// 导入组件
-var models = require('../models/userlist') ;	// 导入自定义组件
-var User = models.User ;	// 使用User模型，对应的users表
 mongoose.connect('mongodb://localhost/maliquan') ;	// 连接数据库
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -55,6 +54,7 @@ exports.welcome = function(req, res){
 		userid : req.query.uid 	}
   res.render('welcome', { title: '程序首页' , user:user });
 };
+
 
 
 //-----------------
