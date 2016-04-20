@@ -2,10 +2,13 @@ class TimerMag {
     private static _instance:TimerMag;
 
     private timeList:TimeEntity[] = [];
-    private loopNum:number = 0;
+    private timer: egret.Timer;
+    private minDelay:number = 10;
 
     constructor() {
-        egret.startTick(this.tickHandler, this);
+        this.timer = new egret.Timer(this.minDelay);
+        this.timer.addEventListener(egret.TimerEvent.TIMER, this.tickHandler, this);
+        this.timer.start();
     }
 
     static get instance():TimerMag {
@@ -19,7 +22,7 @@ class TimerMag {
      * 添加一个时钟
      * @param callBack
      * @param thisObject
-     * @param delay 最小值20
+     * @param delay 10的整数倍
      * @param maxCount
      * @param immediate
      */
@@ -58,17 +61,10 @@ class TimerMag {
      * 检测时钟
      * return 当其返回值为true时会忽略帧频强制刷新屏幕，false时不会
      */
-    private tickHandler(time:number):boolean {
-        this.loopNum++;
-        if(this.loopNum < 20){
-            return false;
-        }else{
-            this.loopNum = 0;
-        }
+    private tickHandler(e:egret.TimerEvent):boolean {
         var len:number = this.timeList.length;
         if (len > 0) {
             var timeEntity:TimeEntity;
-            var num:number = 0;
             var timeList = this.timeList;
             for (var i = 0; i < len; i++) {
                 timeEntity = timeList[i];
@@ -78,11 +74,11 @@ class TimerMag {
                     len--;
                     continue;
                 }
-                num = ((time - timeEntity.oldTime) / timeEntity.delay)>>0;
-                if (num > 0) {
-                    timeEntity.maxCount -= num;
-                    timeEntity.oldTime += num * timeEntity.delay;
-                    timeEntity.callBack.call(timeEntity.thisObject, num);
+                timeEntity.oldTime += this.minDelay;
+                if (timeEntity.oldTime == timeEntity.delay) {
+                    timeEntity.oldTime = 0;
+                    timeEntity.maxCount -= 1;
+                    timeEntity.callBack.call(timeEntity.thisObject);
                     if (timeEntity.maxCount <= 0) {
                         this.removeTime(timeEntity, i);
                         i--;

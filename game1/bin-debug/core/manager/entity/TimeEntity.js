@@ -10,7 +10,7 @@ var TimeEntity = (function () {
         this.callBack = callBack;
         this.thisObject = thisObject;
         this.maxCount = maxCount;
-        this.oldTime = egret.getTimer();
+        this.oldTime = 0;
     }
     var d = __define,c=TimeEntity,p=c.prototype;
     return TimeEntity;

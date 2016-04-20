@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MapBtnSkin" width="110" height="120" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="btnImg" source="fightBtn" y="17" x="5"/>
-	<e:Image id="starImg_1" x="4" y="31" source="ui_main_12"/>
-	<e:Image id="starImg_3" y="-1" x="39" source="ui_main_14"/>
-	<e:Image id="starImg_2" y="11" x="17" source="ui_main_13"/>
-	<e:BitmapLabel id="idLab" y="79" font="font_chapterId" text="1" horizontalCenter="0"/>
-</e:Skin>

@@ -12,5 +12,7 @@ class Global {
     public static STAGE:egret.Stage;
 
     public static BASE_URL:string = "http://localhost:3004"
+    public static COLOR_FORE:number = 0x222222;
+    public static COLOR_BACK:number = 0xdddddd;
 	
 }

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="ChapterStartSkin" width="600" height="600" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
-	<e:Image source="startChapterBkg" width="600" height="600"/>
-	<ns1:BaseBtn id="startBtn" y="448" x="197"/>
-	<e:Label id="tipLab" y="323" horizontalCenter="0" width="456" textAlign="center"/>
-	<e:Label id="titleLab" y="173" horizontalCenter="0" width="222" textAlign="center" size="60"/>
-	<ns1:BaseBtn id="closeBtn" x="433" y="41"/>
-</e:Skin>

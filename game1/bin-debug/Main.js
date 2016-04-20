@@ -2,8 +2,6 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.apply(this, arguments);
-        this.isThemeLoadEnd = false;
-        this.isResourceLoadEnd = false;
     }
     var d = __define,c=Main,p=c.prototype;
     p.createChildren = function () {
@@ -12,7 +10,7 @@ var Main = (function (_super) {
         //注入自定义的素材解析器
         var assetAdapter = new AssetAdapter();
         this.stage.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        this.stage.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
+        //        this.stage.registerImplementation("eui.IThemeAdapter",new ThemeAdapter());
         //Config loading process interface
         //设置加载进度界面
         this.loadingView = new LoadingUI();
@@ -30,22 +28,24 @@ var Main = (function (_super) {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         // load skin theme configuration file, you can manually modify the file. And replace the default skin.
         //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-        var theme = new eui.Theme("resource/default.thm.json", this.stage);
-        theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
+        //        var theme = new eui.Theme("resource/default.thm.json", this.stage);
+        //        theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
         RES.loadGroup("preload");
     };
+    //    private isThemeLoadEnd: boolean = false;
     /**
      * 主题文件加载完成,开始预加载
      * Loading of theme configuration file is complete, start to pre-load the
      */
-    p.onThemeLoadComplete = function () {
-        this.isThemeLoadEnd = true;
-        this.createScene();
-    };
+    //    private onThemeLoadComplete(): void {
+    //        this.isThemeLoadEnd = true;
+    //        this.createScene();
+    //    }
+    //    private isResourceLoadEnd: boolean = false;
     /**
      * preload资源组加载完成
      * preload resource group is loaded
@@ -57,17 +57,17 @@ var Main = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
             RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-            this.isResourceLoadEnd = true;
+            //            this.isResourceLoadEnd = true;
             this.createScene();
         }
     };
     p.createScene = function () {
         var that = this;
-        if (this.isThemeLoadEnd && this.isResourceLoadEnd) {
-            nest.core.startup({ egretAppId: 90102, version: 2, debug: true }, function () {
-                that.initGame();
-            });
-        }
+        //        if(this.isThemeLoadEnd && this.isResourceLoadEnd){
+        nest.core.startup({ egretAppId: 90102, version: 2, debug: true }, function () {
+            that.initGame();
+        });
+        //        }
     };
     /**
      * 资源组加载出错

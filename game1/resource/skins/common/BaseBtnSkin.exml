@@ -1,5 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="BlueBtnSkin" width="207" height="82" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="bkg" horizontalCenter="0" verticalCenter="0" source="button_blue"/>
-	<e:Label id="label" y="23" verticalAlign="middle" textAlign="center" horizontalCenter="0.5" width="180"/>
-</e:Skin>

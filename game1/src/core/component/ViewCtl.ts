@@ -2,8 +2,6 @@ class ViewCtl extends eui.Component {
 
     public postion:number = 5;
     public showData:any = {};
-    public isCreate:boolean = false;
-    public isComplete:boolean = false;
 
     public constructor() {
         super();
@@ -13,25 +11,20 @@ class ViewCtl extends eui.Component {
     /* 创建完毕调用，如果未提前加载模版，在onLoadComplete之前执行 */
     public createChildren():void{
         super.createChildren();
-        this.isCreate = true;
-        if(this.isComplete == true){
-            this.onComplete();
-            this.show();
-        }
     }
 
     /* 加载完模版素材之后执行，创建之后只会调用一次*/
     private onLoadComplete():void{
-        //当创建完成了，再设置，防止会被编辑器里面的默认值覆盖掉设置，虽然测试没问题
-        this.isComplete = true;
-        if(this.isCreate == true){
-            this.onComplete();
-            this.show();
+        this.removeEventListener(eui.UIEvent.COMPLETE,this.onLoadComplete,this);
+    }
+
+    public close():void{
+        if(this.parent){
+            this.parent.removeChild(this);
         }
     }
 
-    public onComplete():void{
-        this.removeEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
+    public show():void{
         //1 2 3
         //4 5 6
         //7 8 9
@@ -73,16 +66,6 @@ class ViewCtl extends eui.Component {
                 this.bottom = 0;
                 break;
         }
-    }
-
-    public close():void{
-        if(this.parent){
-            this.parent.removeChild(this);
-        }
-    }
-
-    /* 每次打开的时候会调用 */
-    public show():void{
     }
 
 }

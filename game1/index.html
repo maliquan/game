@@ -9,10 +9,11 @@
     <meta name="screen-orientation" content="portrait"/>
     <meta name="x5-fullscreen" content="true"/>
     <meta name="360-fullscreen" content="true"/>
+    <meta name="renderer" content="webkit">
     <style>
         html, body {
             -ms-touch-action: none;
-            background: #888888;
+            background: #dddddd;
             padding: 0;
             border: 0;
             margin: 0;
@@ -79,38 +80,23 @@
 	<script egret="game" src="bin-debug/core/utils/MoveDataEntity.js"></script>
 	<script egret="game" src="bin-debug/core/utils/TweenUtils.js"></script>
 	<script egret="game" src="bin-debug/server/Server.js"></script>
-	<script egret="game" src="bin-debug/view/chapter/ChapterMag.js"></script>
-	<script egret="game" src="bin-debug/view/chapter/ChapterMain.js"></script>
-	<script egret="game" src="bin-debug/view/chapter/ChapterOver.js"></script>
-	<script egret="game" src="bin-debug/view/chapter/ChapterStart.js"></script>
-	<script egret="game" src="bin-debug/view/chapter/MoveMag.js"></script>
+	<script egret="game" src="bin-debug/view/common/GBtn.js"></script>
+	<script egret="game" src="bin-debug/view/common/GLabel.js"></script>
 	<script egret="game" src="bin-debug/view/loading/LoadingUI.js"></script>
 	<script egret="game" src="bin-debug/view/login/LoginCtl.js"></script>
-	<script egret="game" src="bin-debug/view/main/MainBtn.js"></script>
-	<script egret="game" src="bin-debug/view/main/MainScene.js"></script>
-	<script egret="game" src="bin-debug/view/main/MainTop.js"></script>
-	<script egret="game" src="bin-debug/view/main/map/ItemVo.js"></script>
-	<script egret="game" src="bin-debug/view/main/map/MapBtn.js"></script>
-	<script egret="game" src="bin-debug/view/main/map/MapGroup.js"></script>
-	<script egret="game" src="bin-debug/view/main/map/MapMag.js"></script>
-	<script egret="game" src="bin-debug/view/main/map/ParserMap.js"></script>
-	<script egret="game" src="bin-debug/view/main/map/ParserMapVo.js"></script>
-	<script egret="game" src="bin-debug/view/object/BaseAI.js"></script>
-	<script egret="game" src="bin-debug/view/object/BaseObj.js"></script>
-	<script egret="game" src="bin-debug/view/object/BaseSoldier.js"></script>
-	<script egret="game" src="bin-debug/view/object/Obj1.js"></script>
-	<script egret="game" src="bin-debug/view/object/ObjVo.js"></script>
+	<script egret="game" src="bin-debug/view/login/SayPanel.js"></script>
+	<script egret="game" src="bin-debug/view/tips/TipDialog.js"></script>
 	<!--game_files_end-->
 </head>
 <body>
 
     <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
-         data-orientation="portrait"
-         data-scale-mode="fixedWidth"
+         data-orientation="landscape"
+         data-scale-mode="showAll"
          data-frame-rate="30"
-         data-content-width="640"
-         data-content-height="960"
+         data-content-width="960"
+         data-content-height="640"
          data-show-paint-rect="false"
          data-multi-fingered="2"
          data-show-fps="false" data-show-log="false"

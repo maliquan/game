@@ -44,11 +44,9 @@ class PopUpMag {
     public showWin(winName:string, postion:number=5, isBlack:boolean=false, param:any=null,
                    layer:eui.UILayer=PopUpMag.LAYER_POPUP){
         var view:ViewCtl = this.popUpMap[winName];
-        var isFirstCreate:boolean = false;//是否是第一次创建
         if(view == null){
             var cls:any = egret.getDefinitionByName(winName);
             this.popUpMap[winName] = new cls();
-            isFirstCreate = true;
         }
         view = this.popUpMap[winName];
         view.postion = postion;
@@ -56,17 +54,14 @@ class PopUpMag {
         view.name = winName;
         this.curOpenWin.push(view.name);
         this.setbkg(isBlack, view);
+        view.show();
         layer.addChild(view);
-        //第一次创建不调用show，因为自动调用了，避免为创建完成就调用show
-        if(!isFirstCreate){
-            this.popUpMap[winName].show();
-        }
     }
 
     private setbkg(isBlack:boolean, view:ViewCtl=null):void{
         if(!this.bkg){
             this.bkg = new egret.Shape();
-            this.bkg.graphics.beginFill(0x000000, 0.8);
+            this.bkg.graphics.beginFill(0x000000, 0.6);
             this.bkg.graphics.drawRect(0,0,Global.STAGE_W,Global.STAGE_H);
             this.bkg.graphics.endFill();
             PopUpMag.LAYER_POPUP.addChildAt(this.bkg,0);

@@ -11,6 +11,8 @@ var Global = (function () {
     Global.STAGE_W = 0;
     Global.STAGE_H = 0;
     Global.BASE_URL = "http://localhost:3004";
+    Global.COLOR_FORE = 0x222222;
+    Global.COLOR_BACK = 0xdddddd;
     return Global;
 }());
 egret.registerClass(Global,'Global');

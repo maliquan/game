@@ -12,6 +12,6 @@ class TimeEntity {
         this.callBack = callBack;
         this.thisObject = thisObject;
         this.maxCount = maxCount;
-        this.oldTime = egret.getTimer();
+        this.oldTime = 0;
     }
 }

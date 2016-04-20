@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin class="MainTopSkin" width="640" height="80" xmlns:e="http://ns.egret.com/eui" xmlns:ns1="*" xmlns:w="http://ns.egret.com/wing">
-	<e:Image x="1" y="1" source="topBg" width="640"/>
-	<ns1:MainBtn id="foodBtn" x="21" y="12" skinName="MainBtnSkin"/>
-	<ns1:MainBtn id="goldBtn" skinName="MainBtnSkin" y="14" horizontalCenter="0"/>
-	<ns1:MainBtn id="diamondBtn" skinName="MainBtnSkin" y="11" x="437"/>
-</e:Skin>
