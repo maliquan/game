@@ -39,10 +39,17 @@ var TipDialog = (function (_super) {
     p.yesHandler = function () {
         var str = LangMag.instance.getText("loginYes");
         this.clean();
+        this.onComplete(str);
     };
     p.noHandler = function () {
         var str = LangMag.instance.getText("loginNo");
         this.clean();
+        this.onComplete(str);
+    };
+    p.onComplete = function (str) {
+        if (this.callFun) {
+            this.callFun.call(this.thisObject, str);
+        }
     };
     p.clean = function () {
         this.btn1.clean();
@@ -54,6 +61,8 @@ var TipDialog = (function (_super) {
         this.contentLab.text = this.showData[1];
         this.btn1.text = this.showData[2];
         this.btn2.text = this.showData[3];
+        this.callFun = this.showData[4];
+        this.thisObject = this.showData[5];
     };
     return TipDialog;
 }(ViewCtl));

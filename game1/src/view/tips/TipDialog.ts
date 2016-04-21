@@ -8,6 +8,8 @@ class TipDialog extends ViewCtl{
     private contentLab:GLabel;
     private btn1:GBtn;
     private btn2:GBtn;
+    private callFun:Function;
+    private thisObject:any;
 
     public constructor(){
         super();
@@ -50,12 +52,20 @@ class TipDialog extends ViewCtl{
     private yesHandler():void{
         var str:string = LangMag.instance.getText("loginYes");
         this.clean();
+        this.onComplete(str);
     }
 
     private noHandler():void{
         var str:string = LangMag.instance.getText("loginNo");
         this.clean();
+        this.onComplete(str);
     }
+
+   private onComplete(str:string):void{
+        if(this.callFun){
+            this.callFun.call(this.thisObject, str);
+        }
+   }
 
     private clean():void{
         this.btn1.clean();
@@ -68,6 +78,8 @@ class TipDialog extends ViewCtl{
         this.contentLab.text = this.showData[1];
         this.btn1.text = this.showData[2];
         this.btn2.text = this.showData[3];
+        this.callFun = this.showData[4];
+        this.thisObject = this.showData[5];
     }
 
 }

@@ -50,6 +50,8 @@ var game_file_list = [
 	"bin-debug/view/loading/LoadingUI.js",
 	"bin-debug/view/login/LoginCtl.js",
 	"bin-debug/view/login/SayPanel.js",
+	"bin-debug/view/main/MainScene.js",
+	"bin-debug/view/tips/LoginDialog.js",
 	"bin-debug/view/tips/TipDialog.js",
 	//----auto game_file_list end----
 ];
