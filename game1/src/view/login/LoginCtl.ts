@@ -6,6 +6,15 @@ class LoginCtl extends ViewCtl {
     public constructor(){
         super();
 
+        //--------------------------------------------
+        var fs:FightScene = new FightScene();
+        this.addChild(fs);
+        fs.init(Global.STAGE_W*0.2, Global.STAGE_H*0.3, 1);
+        fs.x = Global.STAGE_W*0.5 - fs.width*0.5;
+        fs.y = Global.STAGE_H*0.5 - fs.height*0.5;
+        return;
+        //--------------------------------------------
+
         var sayPanel:SayPanel = new SayPanel();
         this.addChild(sayPanel);
         sayPanel.startSay(this.sayOverHandler, this);

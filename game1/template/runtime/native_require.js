@@ -47,12 +47,18 @@ var game_file_list = [
 	"bin-debug/server/Server.js",
 	"bin-debug/view/common/GBtn.js",
 	"bin-debug/view/common/GLabel.js",
+	"bin-debug/view/dialog/LoginDialog.js",
+	"bin-debug/view/dialog/TipDialog.js",
+	"bin-debug/view/dialog/fight/BtnGroup.js",
+	"bin-debug/view/dialog/fight/FightDialog.js",
+	"bin-debug/view/dialog/fight/ObjectSp.js",
+	"bin-debug/view/fight/FSMag.js",
+	"bin-debug/view/fight/FightScene.js",
+	"bin-debug/view/fight/cfg/FSCfg.js",
 	"bin-debug/view/loading/LoadingUI.js",
 	"bin-debug/view/login/LoginCtl.js",
 	"bin-debug/view/login/SayPanel.js",
 	"bin-debug/view/main/MainScene.js",
-	"bin-debug/view/tips/LoginDialog.js",
-	"bin-debug/view/tips/TipDialog.js",
 	//----auto game_file_list end----
 ];
 

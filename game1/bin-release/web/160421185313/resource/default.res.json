@@ -1,0 +1,18 @@
+{
+	"groups":[{
+			"keys":"language,config",
+			"name":"preload"
+		}],
+	"resources":[
+		{
+			"name":"language",
+			"type":"json",
+			"url":"language.json"
+		},
+		{
+			"name":"config",
+			"type":"json",
+			"url":"config.json"
+		}
+	]
+}

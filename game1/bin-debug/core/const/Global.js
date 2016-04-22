@@ -13,6 +13,16 @@ var Global = (function () {
     Global.BASE_URL = "http://localhost:3004";
     Global.COLOR_FORE = 0x222222;
     Global.COLOR_BACK = 0xdddddd;
+    //级别颜色
+    Global.LEVEL_COLOR_ARR = [
+        Global.COLOR_FORE,
+        0x008000,
+        0x0000FF,
+        0xCD00CD,
+        0xCFB53B,
+        0xCC0000,
+        0xFF7F00,
+    ];
     return Global;
 }());
 egret.registerClass(Global,'Global');

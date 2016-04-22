@@ -6,7 +6,7 @@ var WinName = (function () {
     WinName.TIP_DIALOG = "TipDialog";
     WinName.LOGIN_DIALOG = "LoginDialog";
     WinName.MAIN_SCENE = "MainScene";
-    WinName.CHAPTER_OVER = "ChapterOver";
+    WinName.FIGHT_DIALOG = "FightDialog";
     return WinName;
 }());
 egret.registerClass(WinName,'WinName');
