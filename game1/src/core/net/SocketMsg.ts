@@ -28,7 +28,7 @@ class SocketMsg{
     }
 
     private onSocketOpen(e): void {
-        Message.instance.localSend(LocalId.SOCKET_CONNECT_SUCCESS, this.socket);
+//        Message.instance.localSend(LocalId.SOCKET_CONNECT_SUCCESS, this.socket);
     }
 
     private onSocketClose(e): void {

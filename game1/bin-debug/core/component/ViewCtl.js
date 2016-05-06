@@ -4,6 +4,7 @@ var ViewCtl = (function (_super) {
         _super.call(this);
         this.postion = 5;
         this.showData = {};
+        this.isFirst = true;
         this.addEventListener(eui.UIEvent.COMPLETE, this.onLoadComplete, this);
     }
     var d = __define,c=ViewCtl,p=c.prototype;

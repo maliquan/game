@@ -76,8 +76,8 @@ class TipDialog extends ViewCtl{
         super.show();
         this.titleLab.text = this.showData[0];
         this.contentLab.text = this.showData[1];
-        this.btn1.text = this.showData[2];
-        this.btn2.text = this.showData[3];
+        this.btn1.setTxt(this.showData[2]);
+        this.btn2.setTxt(this.showData[3]);
         this.callFun = this.showData[4];
         this.thisObject = this.showData[5];
     }

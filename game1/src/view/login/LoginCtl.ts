@@ -6,15 +6,6 @@ class LoginCtl extends ViewCtl {
     public constructor(){
         super();
 
-        //--------------------------------------------
-        var fs:FightScene = new FightScene();
-        this.addChild(fs);
-        fs.init(Global.STAGE_W*0.2, Global.STAGE_H*0.3, 1);
-        fs.x = Global.STAGE_W*0.5 - fs.width*0.5;
-        fs.y = Global.STAGE_H*0.5 - fs.height*0.5;
-        return;
-        //--------------------------------------------
-
         var sayPanel:SayPanel = new SayPanel();
         this.addChild(sayPanel);
         sayPanel.startSay(this.sayOverHandler, this);
@@ -75,11 +66,17 @@ class LoginCtl extends ViewCtl {
 
     private regiestHandler(userName:string, password:string):void{
         HttpMsg.instance.send(HttpMsgCMD.LOGIN, {userName:userName, password:password}, this.loginSuccess, this);//请求登陆
+//        this.loginSuccess({ret:0});
     }
 
     private loginSuccess(data:any):void{
         if(data.ret == 0){
-            console.log("login success");
+            UserInfo.ins.user_bag_level = data.user_bag_level;
+            UserInfo.ins.userData = new ObjectVo(data.nameStr,[
+                data.maxHp, data.minAtt, data.maxAtt, data.def, data.speed
+            ]);
+            StorageMag.instance.initItems(data.storageList);
+
             PopUpMag.ins().remove(WinName.LOGIN_DIALOG);
             var that = this;
             var scaleNum:number = Math.max(Global.STAGE_W, Global.STAGE_H) * 0.6;

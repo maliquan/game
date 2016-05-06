@@ -1,0 +1,1 @@
+mongod -dbpath=../game_db

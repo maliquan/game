@@ -31,11 +31,14 @@ class HttpMsg {
      * @param thisObject
      * @param isWait 是否等待消息返回
      */
-    send(url:string, params:any, callBack:Function, thisObject:any):void {
-//        //-------------------debug----------------------
-//        callBack.call(thisObject, Server.request(url, params));
-//        return;
-//        //-------------------debug----------------------
+    send(url:string, params:any, callBack:Function=null, thisObject:any=null):void {
+        //-------------------debug----------------------
+        var data:any = Server.request(url, params);
+        if(callBack){
+            callBack.call(thisObject, data);
+        }
+        return;
+        //-------------------debug----------------------
         var index = this.reqsList[0] * 5;
         this.reqsList[index + 1] = url;
         this.reqsList[index + 2] = params;

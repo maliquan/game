@@ -83,7 +83,7 @@ var LoginDialog = (function (_super) {
         _super.prototype.show.call(this);
         this.titleLab.text = this.showData[0];
         this.contentLab.text = this.showData[1];
-        this.btn1.text = this.showData[2];
+        this.btn1.setTxt(this.showData[2]);
         this.callFun = this.showData[3];
         this.thisObject = this.showData[4];
     };

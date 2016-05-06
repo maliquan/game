@@ -27,7 +27,7 @@ var SocketMsg = (function () {
         this.socket.connect("localhost", 8000);
     };
     p.onSocketOpen = function (e) {
-        Message.instance.localSend(LocalId.SOCKET_CONNECT_SUCCESS, this.socket);
+        //        Message.instance.localSend(LocalId.SOCKET_CONNECT_SUCCESS, this.socket);
     };
     p.onSocketClose = function (e) {
         console.log("WebSocketClose");

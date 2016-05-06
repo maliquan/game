@@ -3,6 +3,8 @@
  */
 class FightScene extends egret.Sprite{
 
+    public static curMapLevel:number = 0;
+
     private bkgSp:egret.Shape;
     private GAP:number = 10;
     private fsCfg:FSCfg;
@@ -29,7 +31,10 @@ class FightScene extends egret.Sprite{
     }
 
     public init(sw:number, sh:number, cfgIdx:number):void{
-        this.argArr = [w,h,cfgIdx];
+        this.width = sw;
+        this.height = sh;
+        FightScene.curMapLevel = cfgIdx;
+        this.argArr = [sw,sw,cfgIdx];
         var CF:number = Global.COLOR_FORE;
         var BF:number = Global.COLOR_BACK;
         var w:number = (sw/this.GAP)>>0;
@@ -37,8 +42,9 @@ class FightScene extends egret.Sprite{
 
         this.bkgSp.graphics.lineStyle(1, CF);
         this.bkgSp.graphics.beginFill(BF);
-        this.bkgSp.graphics.drawRect(0, 0, sw, sh);
+        this.bkgSp.graphics.drawRect(0, 0, sw-1, sh-1);
         this.bkgSp.graphics.endFill();
+
         //设置地图
         for(var i:number=0; i<w; i++){
             for(var j:number=0; j<h; j++){
@@ -61,7 +67,7 @@ class FightScene extends egret.Sprite{
         //设置迷雾
         this.maskSp = new egret.Shape();
         this.maskSp.graphics.beginFill(BF);
-        this.maskSp.graphics.drawCircle(this.playerLab.x+this.playerLab.width*0.5, this.playerLab.y+this.playerLab.height*0.5, 50);
+        this.maskSp.graphics.drawCircle(this.playerLab.x+this.playerLab.width*0.5, this.playerLab.y+this.playerLab.height*0.5, 80);
         this.maskSp.graphics.endFill();
         this.scene.mask = this.maskSp;
         this.maskSp.touchEnabled = false;
@@ -110,7 +116,7 @@ class FightScene extends egret.Sprite{
 
     public setMask():void{
         this.maskSp.graphics.beginFill(Global.COLOR_BACK);
-        this.maskSp.graphics.drawCircle(this.playerLab.x+this.playerLab.width*0.5, this.playerLab.y+this.playerLab.height*0.5, 10);
+        this.maskSp.graphics.drawCircle(this.playerLab.x+this.playerLab.width*0.5, this.playerLab.y+this.playerLab.height*0.5, 30);
         this.maskSp.graphics.endFill();
         this.scene.mask = this.maskSp;
     }

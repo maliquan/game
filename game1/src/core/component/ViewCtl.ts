@@ -2,6 +2,7 @@ class ViewCtl extends eui.Component {
 
     public postion:number = 5;
     public showData:any = {};
+    public isFirst:boolean = true;
 
     public constructor() {
         super();

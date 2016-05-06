@@ -15,6 +15,8 @@ class Global {
     public static COLOR_FORE:number = 0x222222;
     public static COLOR_BACK:number = 0xdddddd;
 
+    public static BAG_LIMIT_ARR:number[] = [10, 20, 30, 40, 50, 60];
+
     //级别颜色
     public static LEVEL_COLOR_ARR:number[] = [
         Global.COLOR_FORE,//第一个是前景色，所以这里没用，为了索引方便加一个占位置

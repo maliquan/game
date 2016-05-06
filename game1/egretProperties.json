@@ -25,10 +25,6 @@
 			"name": "tween"
 		},
 		{
-			"name": "nest",
-			"path": "../library/nest"
-		},
-		{
 			"name": "game"
 		}
 	]

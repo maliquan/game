@@ -21,14 +21,17 @@ var FightScene = (function (_super) {
     }
     var d = __define,c=FightScene,p=c.prototype;
     p.init = function (sw, sh, cfgIdx) {
-        this.argArr = [w, h, cfgIdx];
+        this.width = sw;
+        this.height = sh;
+        FightScene.curMapLevel = cfgIdx;
+        this.argArr = [sw, sw, cfgIdx];
         var CF = Global.COLOR_FORE;
         var BF = Global.COLOR_BACK;
         var w = (sw / this.GAP) >> 0;
         var h = (sh / this.GAP) >> 0;
         this.bkgSp.graphics.lineStyle(1, CF);
         this.bkgSp.graphics.beginFill(BF);
-        this.bkgSp.graphics.drawRect(0, 0, sw, sh);
+        this.bkgSp.graphics.drawRect(0, 0, sw - 1, sh - 1);
         this.bkgSp.graphics.endFill();
         //设置地图
         for (var i = 0; i < w; i++) {
@@ -50,7 +53,7 @@ var FightScene = (function (_super) {
         //设置迷雾
         this.maskSp = new egret.Shape();
         this.maskSp.graphics.beginFill(BF);
-        this.maskSp.graphics.drawCircle(this.playerLab.x + this.playerLab.width * 0.5, this.playerLab.y + this.playerLab.height * 0.5, 50);
+        this.maskSp.graphics.drawCircle(this.playerLab.x + this.playerLab.width * 0.5, this.playerLab.y + this.playerLab.height * 0.5, 80);
         this.maskSp.graphics.endFill();
         this.scene.mask = this.maskSp;
         this.maskSp.touchEnabled = false;
@@ -94,10 +97,11 @@ var FightScene = (function (_super) {
     };
     p.setMask = function () {
         this.maskSp.graphics.beginFill(Global.COLOR_BACK);
-        this.maskSp.graphics.drawCircle(this.playerLab.x + this.playerLab.width * 0.5, this.playerLab.y + this.playerLab.height * 0.5, 10);
+        this.maskSp.graphics.drawCircle(this.playerLab.x + this.playerLab.width * 0.5, this.playerLab.y + this.playerLab.height * 0.5, 30);
         this.maskSp.graphics.endFill();
         this.scene.mask = this.maskSp;
     };
+    FightScene.curMapLevel = 0;
     return FightScene;
 }(egret.Sprite));
 egret.registerClass(FightScene,'FightScene');

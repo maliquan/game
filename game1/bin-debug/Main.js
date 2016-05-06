@@ -64,9 +64,9 @@ var Main = (function (_super) {
     p.createScene = function () {
         var that = this;
         //        if(this.isThemeLoadEnd && this.isResourceLoadEnd){
-        nest.core.startup({ egretAppId: 90102, version: 2, debug: true }, function () {
-            that.initGame();
-        });
+        //        nest.core.startup({ egretAppId: 90102, version:2, debug:true}, function (){
+        that.initGame();
+        //        });
         //        }
     };
     /**
@@ -126,12 +126,12 @@ var Main = (function (_super) {
         PopUpMag.ins().showWin(WinName.LOGIN, 1, false, null, PopUpMag.LAYER_SCENE);
     };
     p.recvMsg = function (cmd, data) {
-        switch (cmd) {
-            case LocalId.SOCKET_CONNECT_SUCCESS:
-                Message.instance.remove(LocalId.SOCKET_CONNECT_SUCCESS, this);
-                console.log("WebSocketOpen");
-                break;
-        }
+        //        switch (cmd){
+        //            case LocalId.SOCKET_CONNECT_SUCCESS:
+        //                Message.instance.remove(LocalId.SOCKET_CONNECT_SUCCESS, this);
+        //                console.log("WebSocketOpen");
+        //                break;
+        //        }
     };
     return Main;
 }(eui.UILayer));

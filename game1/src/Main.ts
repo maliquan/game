@@ -65,9 +65,9 @@ class Main extends eui.UILayer implements IMessage{
     private createScene(){
         var that = this;
 //        if(this.isThemeLoadEnd && this.isResourceLoadEnd){
-        nest.core.startup({ egretAppId: 90102, version:2, debug:true}, function (){
+//        nest.core.startup({ egretAppId: 90102, version:2, debug:true}, function (){
             that.initGame();
-        });
+//        });
 //        }
     }
     /**
@@ -132,12 +132,12 @@ class Main extends eui.UILayer implements IMessage{
     }
 
     recvMsg(cmd:number, data:any):void {
-        switch (cmd){
-            case LocalId.SOCKET_CONNECT_SUCCESS:
-                Message.instance.remove(LocalId.SOCKET_CONNECT_SUCCESS, this);
-                console.log("WebSocketOpen");
-                break;
-        }
+//        switch (cmd){
+//            case LocalId.SOCKET_CONNECT_SUCCESS:
+//                Message.instance.remove(LocalId.SOCKET_CONNECT_SUCCESS, this);
+//                console.log("WebSocketOpen");
+//                break;
+//        }
     }
     
 }

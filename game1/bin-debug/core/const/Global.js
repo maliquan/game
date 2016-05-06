@@ -13,6 +13,7 @@ var Global = (function () {
     Global.BASE_URL = "http://localhost:3004";
     Global.COLOR_FORE = 0x222222;
     Global.COLOR_BACK = 0xdddddd;
+    Global.BAG_LIMIT_ARR = [10, 20, 30, 40, 50, 60];
     //级别颜色
     Global.LEVEL_COLOR_ARR = [
         Global.COLOR_FORE,

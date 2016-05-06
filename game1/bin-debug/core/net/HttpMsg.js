@@ -30,10 +30,15 @@ var HttpMsg = (function () {
      * @param isWait 是否等待消息返回
      */
     p.send = function (url, params, callBack, thisObject) {
-        //        //-------------------debug----------------------
-        //        callBack.call(thisObject, Server.request(url, params));
-        //        return;
-        //        //-------------------debug----------------------
+        if (callBack === void 0) { callBack = null; }
+        if (thisObject === void 0) { thisObject = null; }
+        //-------------------debug----------------------
+        var data = Server.request(url, params);
+        if (callBack) {
+            callBack.call(thisObject, data);
+        }
+        return;
+        //-------------------debug----------------------
         var index = this.reqsList[0] * 5;
         this.reqsList[index + 1] = url;
         this.reqsList[index + 2] = params;
