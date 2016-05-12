@@ -11,8 +11,8 @@ class FightDialog extends ViewCtl{
     private thisObject:any;
     private myObj:ObjectSp;
     private monsterObj:ObjectSp;
-    private dropIdx:number;
     private isOver:boolean = false;
+    private startObj:any;
 
     public constructor(){
         super();
@@ -23,6 +23,9 @@ class FightDialog extends ViewCtl{
 
         this.width = 350;
         this.height = 200 + 15;
+
+        var startStr:string = LangMag.instance.getText("fight_get_item");
+        this.startObj = { text:startStr+"\n", style:{"textColor":Global.COLOR_FORE, "size":Global.FS_20}};
 
         this.bkgShape = new egret.Shape();
         this.bkgShape.graphics.lineStyle(2, Global.COLOR_FORE, 0.8);
@@ -72,11 +75,10 @@ class FightDialog extends ViewCtl{
             return;
         }
         super.show();
-        this.init(1, 3);
+        this.init();
     }
 
-    private init(depth:number, level:number):void{
-        this.dropIdx = this.showData[0];
+    private init():void{
         this.titleLab.text = "";
         this.contentLab.text = "";
         this.callFun = this.close;
@@ -116,18 +118,21 @@ class FightDialog extends ViewCtl{
 
     private monsterDie():void{
         //过关
-        var dropStr:string = "";
-        var dropCfg:any[] = DropCfg.dropList[this.dropIdx];
+        var dropArr:Array<egret.ITextElement> = [this.startObj];
+        var dropCfg:any[] = DropCfg.dropList[UserInfo.ins.mapIdx];
         var len:number = dropCfg.length;
         for(var i:number=0; i<len; i++){
             var item:any = dropCfg[i];
-            BagMag.instance.addItem(item.id, item.num, item.level);
-            var drowVo:ItemVo = BagMag.instance.lastAddItemVo;
-            dropStr += " " + drowVo.name + "x" + drowVo.num, drowVo.color;
+            var random:number = Math.random();
+            if(random < item.p){
+                BagMag.instance.addItem(item.id, 1);
+                var drowVo:ItemVo = ItemMag.instance.getItemVo(item.id, 1);
+                var str = " " + drowVo.name + "x" + drowVo.num;
+                dropArr.push({ text:str+"\n", style:{"textColor":drowVo.color, "size":Global.FS_20}});
+            }
         }
-        if(dropStr != ""){
-            dropStr = LangMag.instance.getText("fight_get_item") + dropStr;
-            Message.instance.localSend(LocalId.SHOW_MESSAGE, [dropStr]);
+        if(dropArr.length > 1){
+            Message.instance.localSend(LocalId.SHOW_MESSAGE_COLOR, dropArr);
         }
         this.isOver = true;
         this.btn1.setTxt(LangMag.instance.getText("close"));

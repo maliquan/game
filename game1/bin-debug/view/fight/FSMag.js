@@ -72,8 +72,7 @@ var FSMag = (function () {
                 this.eventOver();
                 break;
             case FSCfg.E_GO_FIGHT:
-                Message.instance.localSend(LocalId.SHOW_MESSAGE, ["go fight"]);
-                PopUpMag.ins().showWin(WinName.FIGHT_DIALOG, 5, false, [dropIdx]);
+                PopUpMag.ins().showWin(WinName.FIGHT_DIALOG, 5, false);
                 break;
         }
     };

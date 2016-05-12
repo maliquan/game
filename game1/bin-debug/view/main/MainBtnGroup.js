@@ -29,30 +29,17 @@ var MainBtnGroup = (function (_super) {
     }
     var d = __define,c=MainBtnGroup,p=c.prototype;
     p.tapHandler = function (e) {
-        console.log(e.target.text);
-        this.setCurBtn(e.target.index);
-        //0仓库,1集市,2宅邸,3城外
-        switch (e.target) {
-            case this.labArr[0]:
-                break;
-            case this.labArr[1]:
-                break;
-            case this.labArr[2]:
-                break;
-            case this.labArr[3]:
-                Message.instance.localSend(LocalId.LEAVE_HOME);
-                break;
-        }
+        Message.instance.localSend(LocalId.MAIN_BTN_CLK_IDX, e.target.index);
     };
     p.setCurBtn = function (idx) {
         for (var i = 0; i < this.labArr.length; i++) {
             if (i == idx) {
                 this.labArr[i].bold = true;
-                this.labArr[i].size = 28;
+                this.labArr[i].size = Global.FS_30;
             }
             else {
                 this.labArr[i].bold = false;
-                this.labArr[i].size = 22;
+                this.labArr[i].size = Global.FS_20;
             }
         }
     };

@@ -3,8 +3,9 @@
  */
 class DropCfg {
 
+    //p 掉落概率
     public static dropList:any[] = [
-        [{id:10000, num:1, level:2}, {id:20000, num:2, level:2}],//0
+        [{id:10000, p:0.9}, {id:20000, p:0.5}],//0
         [{}],//1
     ];
 }

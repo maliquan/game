@@ -3,6 +3,7 @@ var Server = (function () {
     }
     var d = __define,c=Server,p=c.prototype;
     Server.request = function (url, param) {
+        //        this.clean();
         var data;
         var cfg = egret.localStorage.getItem(url);
         if (cfg) {
@@ -20,18 +21,21 @@ var Server = (function () {
                     "def": 5,
                     "speed": 1,
                     "storageList": [],
-                    "bagList": []
+                    "bagList": [],
+                    "equipArr": [],
+                    "lastLoginTime": new Date().getTime()
                 };
                 break;
             case HttpMsgCMD.SAVE_STORAGE:
                 url = HttpMsgCMD.LOGIN;
                 data = this.localData;
-                data.storageList = data.storageList.concat(param);
+                data.storageList = param;
+                data.lastLoginTime = new Date().getTime();
                 break;
             case HttpMsgCMD.SAVE_BAG:
                 url = HttpMsgCMD.LOGIN;
                 data = this.localData;
-                data.bagList = data.bagList.concat(param);
+                data.bagList = param;
                 break;
         }
         this.saveData(url, data);

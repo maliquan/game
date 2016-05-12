@@ -22,6 +22,7 @@ class ChatPanel extends egret.Sprite implements IMessage{
         this.addChild(this.chatLab);
 
         Message.instance.add(LocalId.SHOW_MESSAGE, this);
+        Message.instance.add(LocalId.SHOW_MESSAGE_COLOR, this);
 
 //        var tx:egret.TextField = new egret.TextField;
 //        tx.textFlow = new Array<egret.ITextElement>(
@@ -40,13 +41,21 @@ class ChatPanel extends egret.Sprite implements IMessage{
     public recvMsg(cmd:number, data:any):void{
         switch (cmd){
             case LocalId.SHOW_MESSAGE:
-                this.addTxt(data[0]||"", data[1]||Global.COLOR_FORE, data[2]||22)
+                this.addTxt(data[0]||"", data[1]||Global.COLOR_FORE, data[2]||Global.FS_20)
+                break;
+            case LocalId.SHOW_MESSAGE_COLOR:
+                this.addColorTxt(data);
                 break;
         }
     }
 
     public addTxt(str:string, color:number, size:number):void{
         var list:Array<egret.ITextElement> = <Array<egret.ITextElement>>[{ text:str+"\n", style:{"textColor":color, "size":size}}];
+        list = this.chatLab.textFlow.concat(list);
+        this.chatLab.textFlow = list;
+    }
+
+    public addColorTxt(list:Array<egret.ITextElement>):void{
         list = this.chatLab.textFlow.concat(list);
         this.chatLab.textFlow = list;
     }

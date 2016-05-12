@@ -11,7 +11,7 @@ var StorageMag = (function () {
             return this._instance;
         }
     );
-    p.addItem = function (id, num, level, isSave) {
+    p.addItem = function (id, num, isSave) {
         if (isSave === void 0) { isSave = true; }
         for (var i = 0; i < this._itemList.length; i++) {
             if (this._itemList[i].id == id) {
@@ -21,7 +21,7 @@ var StorageMag = (function () {
             }
         }
         if (num > 0) {
-            this.itemList.push(ItemMag.instance.getItemVo(id, num, level));
+            this.itemList.push(ItemMag.instance.getItemVo(id, num));
         }
         if (isSave) {
             this.saveData();
@@ -30,7 +30,7 @@ var StorageMag = (function () {
     p.initItems = function (list) {
         for (var i = 0; i < list.length; i++) {
             var item = list[i];
-            this.addItem(item[0], item[1], item[2], false);
+            this.addItem(item[0], item[1], false);
         }
     };
     p.addBag = function (itemList) {

@@ -12,10 +12,14 @@ class Global {
     public static STAGE:egret.Stage;
 
     public static BASE_URL:string = "http://localhost:3004"
-    public static COLOR_FORE:number = 0x222222;
-    public static COLOR_BACK:number = 0xdddddd;
+    public static COLOR_FORE:number = 0x111111;
+    public static COLOR_BACK:number = 0xeeeeee;
 
     public static BAG_LIMIT_ARR:number[] = [10, 20, 30, 40, 50, 60];
+
+    public static FS_10:number = 10;
+    public static FS_20:number = 20;
+    public static FS_30:number = 30;
 
     //级别颜色
     public static LEVEL_COLOR_ARR:number[] = [

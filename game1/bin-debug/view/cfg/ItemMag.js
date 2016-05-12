@@ -10,16 +10,16 @@ var ItemMag = (function () {
             return this._instance;
         }
     );
-    p.getItemVo = function (id, num, level) {
+    p.getItemVo = function (id, num) {
         var vo;
         var type = (id / 10000) >> 0;
         var idx = id % 10000;
         switch (type) {
             case ItemMag.ITEM_TYPE_ITEM:
-                vo = ItemCfg.getVoById(idx, num, level);
+                vo = ItemCfg.getVoById(idx, num);
                 break;
             case ItemMag.ITEM_TYPE_EQUIP:
-                vo = EquipCfg.getVoById(idx, num, level);
+                vo = EquipCfg.getVoById(idx, num);
                 break;
         }
         return vo;

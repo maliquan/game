@@ -3,23 +3,23 @@ var LoginCtl = (function (_super) {
     function LoginCtl() {
         _super.call(this);
         this.showStr = "";
-        var sayPanel = new SayPanel();
-        this.addChild(sayPanel);
-        sayPanel.startSay(this.sayOverHandler, this);
+        this.sayPanel = new SayPanel();
+        this.addChild(this.sayPanel);
+        this.startBlack();
     }
     var d = __define,c=LoginCtl,p=c.prototype;
-    p.sayOverHandler = function () {
-        var titleStr = LangMag.instance.getText("loginTitile");
-        var content = LangMag.instance.getText("loginContent");
-        var btnLabel1 = LangMag.instance.getText("shi");
-        var btnLabel2 = LangMag.instance.getText("fou");
-        PopUpMag.ins().showWin(WinName.TIP_DIALOG, 5, true, [titleStr, content, btnLabel1, btnLabel2, this.clkHandler, this]);
-    };
-    p.clkHandler = function (str) {
-        this.showStr = str;
-        this.startBlack();
-        PopUpMag.ins().remove(WinName.TIP_DIALOG);
-    };
+    //    private sayOverHandler():void{
+    //        var titleStr:string = LangMag.instance.getText("loginTitile");
+    //        var content:string = LangMag.instance.getText("loginContent");
+    //        var btnLabel1:string = LangMag.instance.getText("shi");
+    //        var btnLabel2:string = LangMag.instance.getText("fou");
+    //        PopUpMag.ins().showWin(WinName.TIP_DIALOG, 5, true, [titleStr, content, btnLabel1, btnLabel2, this.clkHandler, this]);
+    //    }
+    //    private clkHandler(str:string):void{
+    //        this.showStr = str;
+    //        this.startBlack();
+    //        PopUpMag.ins().remove(WinName.TIP_DIALOG);
+    //    }
     p.startBlack = function () {
         var circleSp = new egret.Shape();
         circleSp.graphics.beginFill(0x000000);
@@ -49,10 +49,12 @@ var LoginCtl = (function (_super) {
         var scaleNum = Math.max(Global.STAGE_W, Global.STAGE_H) * 0.2;
         egret.Tween.get(this.writeCircleSp).to({ scaleX: scaleNum, scaleY: scaleNum, alpha: 1 }, 500, egret.Ease.sineIn)
             .call(function () {
-            var titleStr = LangMag.instance.getText("loginTitle2");
-            var content = that.showStr;
-            var btnLabel = LangMag.instance.getText("sure");
-            PopUpMag.ins().showWin(WinName.LOGIN_DIALOG, 5, false, [titleStr, content, btnLabel, that.regiestHandler, that]);
+            that.sayPanel.startSay(function () {
+                var titleStr = LangMag.instance.getText("loginTitle2");
+                var content = that.showStr;
+                var btnLabel = LangMag.instance.getText("sure");
+                PopUpMag.ins().showWin(WinName.LOGIN_DIALOG, 5, false, [titleStr, content, btnLabel, that.regiestHandler, that]);
+            }, this);
         }, this);
     };
     p.regiestHandler = function (userName, password) {
@@ -61,11 +63,13 @@ var LoginCtl = (function (_super) {
     };
     p.loginSuccess = function (data) {
         if (data.ret == 0) {
+            UserInfo.ins.equipArr = data.equipArr;
             UserInfo.ins.user_bag_level = data.user_bag_level;
             UserInfo.ins.userData = new ObjectVo(data.nameStr, [
                 data.maxHp, data.minAtt, data.maxAtt, data.def, data.speed
             ]);
             StorageMag.instance.initItems(data.storageList);
+            UserInfo.ins.lastLoginTime = data.lastLoginTime;
             PopUpMag.ins().remove(WinName.LOGIN_DIALOG);
             var that = this;
             var scaleNum = Math.max(Global.STAGE_W, Global.STAGE_H) * 0.6;

@@ -5,8 +5,9 @@ var DropCfg = (function () {
     function DropCfg() {
     }
     var d = __define,c=DropCfg,p=c.prototype;
+    //p 掉落概率
     DropCfg.dropList = [
-        [{ id: 10000, num: 1, level: 2 }, { id: 20000, num: 2, level: 2 }],
+        [{ id: 10000, p: 0.9 }, { id: 20000, p: 0.5 }],
         [{}],
     ];
     return DropCfg;

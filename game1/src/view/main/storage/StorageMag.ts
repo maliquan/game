@@ -10,7 +10,7 @@ class StorageMag {
         return this._instance;
     }
 
-    public addItem(id:number, num:number, level:number, isSave:boolean=true):void{
+    public addItem(id:number, num:number, isSave:boolean=true):void{
         for(var i:number=0; i<this._itemList.length; i++){
             if(this._itemList[i].id == id){
                 this._itemList[i].num += num;
@@ -19,7 +19,7 @@ class StorageMag {
             }
         }
         if(num > 0){
-            this.itemList.push(ItemMag.instance.getItemVo(id, num, level));
+            this.itemList.push( ItemMag.instance.getItemVo(id, num) );
         }
         if(isSave){
             this.saveData();
@@ -29,7 +29,7 @@ class StorageMag {
     public initItems(list:number[][]):void{
         for(var i:number=0; i<list.length; i++){
             var item:any = list[i];
-            this.addItem(item[0], item[1], item[2], false);
+            this.addItem(item[0], item[1], false);
         }
     }
 

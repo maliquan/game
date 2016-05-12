@@ -3,6 +3,7 @@ class Server{
     private static localData:any = {}
 
     public static request(url:string, param:any):any{
+//        this.clean();
         var data:any;
         var cfg:string = egret.localStorage.getItem(url);
         if(cfg){
@@ -21,18 +22,21 @@ class Server{
                     "def":5,
                     "speed":1,
                     "storageList":[],
-                    "bagList":[]
+                    "bagList":[],
+                    "equipArr":[],
+                    "lastLoginTime":new Date().getTime()
                 };
                 break;
             case HttpMsgCMD.SAVE_STORAGE:
                 url = HttpMsgCMD.LOGIN;
                 data = this.localData;
-                data.storageList = data.storageList.concat(param);
+                data.storageList = param;
+                data.lastLoginTime = new Date().getTime();
                 break;
             case HttpMsgCMD.SAVE_BAG:
                 url = HttpMsgCMD.LOGIN;
                 data = this.localData;
-                data.bagList = data.bagList.concat(param);
+                data.bagList = param;
                 break;
         }
         this.saveData(url, data);

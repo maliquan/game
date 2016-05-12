@@ -11,9 +11,12 @@ var Global = (function () {
     Global.STAGE_W = 0;
     Global.STAGE_H = 0;
     Global.BASE_URL = "http://localhost:3004";
-    Global.COLOR_FORE = 0x222222;
-    Global.COLOR_BACK = 0xdddddd;
+    Global.COLOR_FORE = 0x111111;
+    Global.COLOR_BACK = 0xeeeeee;
     Global.BAG_LIMIT_ARR = [10, 20, 30, 40, 50, 60];
+    Global.FS_10 = 10;
+    Global.FS_20 = 20;
+    Global.FS_30 = 30;
     //级别颜色
     Global.LEVEL_COLOR_ARR = [
         Global.COLOR_FORE,

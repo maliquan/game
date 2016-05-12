@@ -11,19 +11,17 @@ var BagMag = (function () {
             return this._instance;
         }
     );
-    p.addItem = function (id, num, level) {
+    p.addItem = function (id, num) {
         for (var i = 0; i < this._itemList.length; i++) {
             var curItemVo = this._itemList[i];
             if (curItemVo.id == id) {
                 curItemVo.num += num;
-                this.lastAddItemVo = curItemVo;
                 num = 0;
                 break;
             }
         }
         if (num > 0) {
-            this.lastAddItemVo = ItemMag.instance.getItemVo(id, num, level);
-            this.itemList.push(this.lastAddItemVo);
+            this.itemList.push(ItemMag.instance.getItemVo(id, num));
         }
         this.saveData();
     };

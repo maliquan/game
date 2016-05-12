@@ -12,6 +12,8 @@ var FightDialog = (function (_super) {
         _super.prototype.createChildren.call(this);
         this.width = 350;
         this.height = 200 + 15;
+        var startStr = LangMag.instance.getText("fight_get_item");
+        this.startObj = { text: startStr + "\n", style: { "textColor": Global.COLOR_FORE, "size": Global.FS_20 } };
         this.bkgShape = new egret.Shape();
         this.bkgShape.graphics.lineStyle(2, Global.COLOR_FORE, 0.8);
         this.bkgShape.graphics.beginFill(Global.COLOR_BACK);
@@ -53,10 +55,9 @@ var FightDialog = (function (_super) {
             return;
         }
         _super.prototype.show.call(this);
-        this.init(1, 3);
+        this.init();
     };
-    p.init = function (depth, level) {
-        this.dropIdx = this.showData[0];
+    p.init = function () {
         this.titleLab.text = "";
         this.contentLab.text = "";
         this.callFun = this.close;
@@ -91,18 +92,21 @@ var FightDialog = (function (_super) {
     };
     p.monsterDie = function () {
         //过关
-        var dropStr = "";
-        var dropCfg = DropCfg.dropList[this.dropIdx];
+        var dropArr = [this.startObj];
+        var dropCfg = DropCfg.dropList[UserInfo.ins.mapIdx];
         var len = dropCfg.length;
         for (var i = 0; i < len; i++) {
             var item = dropCfg[i];
-            BagMag.instance.addItem(item.id, item.num, item.level);
-            var drowVo = BagMag.instance.lastAddItemVo;
-            dropStr += " " + drowVo.name + "x" + drowVo.num, drowVo.color;
+            var random = Math.random();
+            if (random < item.p) {
+                BagMag.instance.addItem(item.id, 1);
+                var drowVo = ItemMag.instance.getItemVo(item.id, 1);
+                var str = " " + drowVo.name + "x" + drowVo.num;
+                dropArr.push({ text: str + "\n", style: { "textColor": drowVo.color, "size": Global.FS_20 } });
+            }
         }
-        if (dropStr != "") {
-            dropStr = LangMag.instance.getText("fight_get_item") + dropStr;
-            Message.instance.localSend(LocalId.SHOW_MESSAGE, [dropStr]);
+        if (dropArr.length > 1) {
+            Message.instance.localSend(LocalId.SHOW_MESSAGE_COLOR, dropArr);
         }
         this.isOver = true;
         this.btn1.setTxt(LangMag.instance.getText("close"));

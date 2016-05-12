@@ -2,28 +2,29 @@ class LoginCtl extends ViewCtl {
 
     private showStr:string = "";
     private writeCircleSp:egret.Shape;
+    private sayPanel:SayPanel;
 
     public constructor(){
         super();
 
-        var sayPanel:SayPanel = new SayPanel();
-        this.addChild(sayPanel);
-        sayPanel.startSay(this.sayOverHandler, this);
-    }
-
-    private sayOverHandler():void{
-        var titleStr:string = LangMag.instance.getText("loginTitile");
-        var content:string = LangMag.instance.getText("loginContent");
-        var btnLabel1:string = LangMag.instance.getText("shi");
-        var btnLabel2:string = LangMag.instance.getText("fou");
-        PopUpMag.ins().showWin(WinName.TIP_DIALOG, 5, true, [titleStr, content, btnLabel1, btnLabel2, this.clkHandler, this]);
-    }
-
-    private clkHandler(str:string):void{
-        this.showStr = str;
+        this.sayPanel = new SayPanel();
+        this.addChild(this.sayPanel);
         this.startBlack();
-        PopUpMag.ins().remove(WinName.TIP_DIALOG);
     }
+
+//    private sayOverHandler():void{
+//        var titleStr:string = LangMag.instance.getText("loginTitile");
+//        var content:string = LangMag.instance.getText("loginContent");
+//        var btnLabel1:string = LangMag.instance.getText("shi");
+//        var btnLabel2:string = LangMag.instance.getText("fou");
+//        PopUpMag.ins().showWin(WinName.TIP_DIALOG, 5, true, [titleStr, content, btnLabel1, btnLabel2, this.clkHandler, this]);
+//    }
+
+//    private clkHandler(str:string):void{
+//        this.showStr = str;
+//        this.startBlack();
+//        PopUpMag.ins().remove(WinName.TIP_DIALOG);
+//    }
 
     private startBlack():void{
         var circleSp:egret.Shape = new egret.Shape();
@@ -57,10 +58,12 @@ class LoginCtl extends ViewCtl {
         var scaleNum:number = Math.max(Global.STAGE_W, Global.STAGE_H) * 0.2;
         egret.Tween.get(this.writeCircleSp).to({scaleX:scaleNum, scaleY:scaleNum, alpha:1}, 500, egret.Ease.sineIn)
             .call(function(){
-                var titleStr:string = LangMag.instance.getText("loginTitle2");
-                var content:string = that.showStr;
-                var btnLabel:string = LangMag.instance.getText("sure");
-                PopUpMag.ins().showWin(WinName.LOGIN_DIALOG, 5, false, [titleStr, content, btnLabel, that.regiestHandler, that]);
+                that.sayPanel.startSay(function():void{
+                    var titleStr:string = LangMag.instance.getText("loginTitle2");
+                    var content:string = that.showStr;
+                    var btnLabel:string = LangMag.instance.getText("sure");
+                    PopUpMag.ins().showWin(WinName.LOGIN_DIALOG, 5, false, [titleStr, content, btnLabel, that.regiestHandler, that]);
+                }, this);
             }, this);
     }
 
@@ -71,11 +74,13 @@ class LoginCtl extends ViewCtl {
 
     private loginSuccess(data:any):void{
         if(data.ret == 0){
+            UserInfo.ins.equipArr = data.equipArr;
             UserInfo.ins.user_bag_level = data.user_bag_level;
             UserInfo.ins.userData = new ObjectVo(data.nameStr,[
                 data.maxHp, data.minAtt, data.maxAtt, data.def, data.speed
             ]);
             StorageMag.instance.initItems(data.storageList);
+            UserInfo.ins.lastLoginTime = data.lastLoginTime;
 
             PopUpMag.ins().remove(WinName.LOGIN_DIALOG);
             var that = this;

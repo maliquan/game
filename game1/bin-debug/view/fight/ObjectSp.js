@@ -6,14 +6,14 @@ var ObjectSp = (function (_super) {
     function ObjectSp() {
         _super.call(this);
         this.hpLab = new eui.Label();
-        this.hpLab.size = 20;
+        this.hpLab.size = Global.FS_20;
         this.addChild(this.hpLab);
         this.nameLab = new eui.Label();
-        this.nameLab.size = 20;
+        this.nameLab.size = Global.FS_20;
         this.addChild(this.nameLab);
         this.loseHpLab = new eui.Label();
         this.loseHpLab.textColor = Global.COLOR_FORE;
-        this.loseHpLab.size = 20;
+        this.loseHpLab.size = Global.FS_20;
         this.addChild(this.loseHpLab);
     }
     var d = __define,c=ObjectSp,p=c.prototype;

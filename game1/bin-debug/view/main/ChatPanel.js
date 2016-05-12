@@ -17,6 +17,7 @@ var ChatPanel = (function (_super) {
         this.chatLab.height = this.height;
         this.addChild(this.chatLab);
         Message.instance.add(LocalId.SHOW_MESSAGE, this);
+        Message.instance.add(LocalId.SHOW_MESSAGE_COLOR, this);
         //        var tx:egret.TextField = new egret.TextField;
         //        tx.textFlow = new Array<egret.ITextElement>(
         //            { text:"这段文字有链接", style: { "href" : "event:text event triggered" } }
@@ -34,12 +35,19 @@ var ChatPanel = (function (_super) {
     p.recvMsg = function (cmd, data) {
         switch (cmd) {
             case LocalId.SHOW_MESSAGE:
-                this.addTxt(data[0] || "", data[1] || Global.COLOR_FORE, data[2] || 22);
+                this.addTxt(data[0] || "", data[1] || Global.COLOR_FORE, data[2] || Global.FS_20);
+                break;
+            case LocalId.SHOW_MESSAGE_COLOR:
+                this.addColorTxt(data);
                 break;
         }
     };
     p.addTxt = function (str, color, size) {
         var list = [{ text: str + "\n", style: { "textColor": color, "size": size } }];
+        list = this.chatLab.textFlow.concat(list);
+        this.chatLab.textFlow = list;
+    };
+    p.addColorTxt = function (list) {
         list = this.chatLab.textFlow.concat(list);
         this.chatLab.textFlow = list;
     };

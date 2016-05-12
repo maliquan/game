@@ -81,7 +81,7 @@ class FightScene extends egret.Sprite{
         lab.text = cfg.n;
         lab.background = true;
         lab.backgroundColor = BF;
-        lab.size = 10;
+        lab.size = Global.FS_10;
         lab.x = cfg.x * this.GAP + this.GAP*0.5 - lab.width*0.5;
         lab.y = cfg.y * this.GAP + this.GAP*0.5 - lab.height *0.5;
         this.scene.addChild(lab);
@@ -95,7 +95,7 @@ class FightScene extends egret.Sprite{
             this.playerLab.text = "@";
             this.playerLab.background = true;
             this.playerLab.backgroundColor = BF;
-            this.playerLab.size = 10;
+            this.playerLab.size = Global.FS_10;
             this.playerLab.x = cfg.x * this.GAP + this.GAP*0.5 - lab.width*0.5;
             this.playerLab.y = cfg.y * this.GAP + this.GAP*0.5 - lab.height *0.5;
         }

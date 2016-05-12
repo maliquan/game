@@ -2,7 +2,6 @@ class BagMag {
     private static _instance:BagMag;
     
     private _itemList:ItemVo[] = [];
-    public lastAddItemVo:ItemVo;
 
     static get instance():BagMag {
         if (!this._instance) {
@@ -11,19 +10,17 @@ class BagMag {
         return this._instance;
     }
 
-    public addItem(id:number, num:number, level:number):void{
+    public addItem(id:number, num:number):void{
         for(var i:number=0; i<this._itemList.length; i++){
             var curItemVo:ItemVo = this._itemList[i];
             if(curItemVo.id == id){
                 curItemVo.num += num;
-                this.lastAddItemVo = curItemVo;
                 num = 0;
                 break
             }
         }
         if(num > 0){
-            this.lastAddItemVo = ItemMag.instance.getItemVo(id, num, level);
-            this.itemList.push(this.lastAddItemVo);
+            this.itemList.push(ItemMag.instance.getItemVo(id, num));
         }
         this.saveData();
     }

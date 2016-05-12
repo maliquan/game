@@ -12,16 +12,16 @@ class ItemMag {
         return this._instance;
     }
 
-    public getItemVo(id:number, num:number, level:number):ItemVo{
+    public getItemVo(id:number, num:number):ItemVo{
         var vo:ItemVo;
         var type:number = (id/10000)>>0;
         var idx:number = id % 10000;
         switch (type){
             case ItemMag.ITEM_TYPE_ITEM:
-                vo = ItemCfg.getVoById(idx, num, level);
+                vo = ItemCfg.getVoById(idx, num);
                 break;
             case ItemMag.ITEM_TYPE_EQUIP:
-                vo = EquipCfg.getVoById(idx, num, level);
+                vo = EquipCfg.getVoById(idx, num);
                 break;
         }
         return vo;

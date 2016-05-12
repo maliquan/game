@@ -6,6 +6,8 @@ class MainScene extends ViewCtl implements IMessage{
     private fightPan:FightScene;
     private bagPanel:BagPanel;
     private bkg:egret.Shape;
+    private homePanel:HomePanel;
+    private panelArr:egret.Sprite[] = [];
 
     public constructor(){
         super();
@@ -22,6 +24,11 @@ class MainScene extends ViewCtl implements IMessage{
         this.chatPan = new ChatPanel();
         this.addChild(this.chatPan);
 
+        this.homePanel = new HomePanel();
+        this.homePanel.x = this.chatPan.x + this.chatPan.width;
+        this.homePanel.y = 100;
+        this.addChild(this.homePanel);
+
         this.btnGroup = new MainBtnGroup();
         this.addChild(this.btnGroup);
         this.btnGroup.x = this.chatPan.x + this.chatPan.width;
@@ -30,6 +37,7 @@ class MainScene extends ViewCtl implements IMessage{
         this.addChild(this.storagePanel);
         this.storagePanel.x = this.chatPan.x + this.chatPan.width;
         this.storagePanel.y = 100;
+        this.storagePanel.visible = false;
 
         this.fightPan = new FightScene();
         this.fightPan.init(Global.STAGE_W - this.chatPan.width, Global.STAGE_H-100, 0);
@@ -43,8 +51,12 @@ class MainScene extends ViewCtl implements IMessage{
         this.bagPanel.x = this.chatPan.x + this.chatPan.width;
         this.bagPanel.visible = false;
 
+        this.panelArr = [this.homePanel, this.storagePanel, null, this.fightPan];
+
+
+        TimeDropServer.instance.init(UserInfo.ins.lastLoginTime);
         Message.instance.add(LocalId.GO_HOME, this);
-        Message.instance.add(LocalId.LEAVE_HOME, this);
+        Message.instance.add(LocalId.MAIN_BTN_CLK_IDX, this);
     }
 
     public recvMsg(cmd:number, data:any):void{
@@ -52,28 +64,46 @@ class MainScene extends ViewCtl implements IMessage{
             case LocalId.GO_HOME:
                 this.goHome();
                 break;
-            case LocalId.LEAVE_HOME:
-                this.leaveHome();
+            case LocalId.MAIN_BTN_CLK_IDX:
+                this.mainBtnClk(data);
                 break;
         }
     }
 
-    private leaveHome():void{
-        Message.instance.localSend(LocalId.SHOW_MESSAGE, ["leave home"]);
-        this.btnGroup.visible = false;
-        this.bagPanel.visible = true;
-        this.fightPan.visible = true;
+    private mainBtnClk(idx:number):void{
+        for(var i:number=0; i<this.panelArr.length; i++){
+            if(this.panelArr[i]){
+                this.panelArr[i].visible = false;
+            }
+        }
+        if(this.panelArr[idx]){
+            this.panelArr[idx].visible = true;
+        }
+        this.btnGroup.setCurBtn(idx);
+        this.btnGroup.visible = true;
+        this.bagPanel.visible = false;
+
+        //0宅邸,1仓库,2集市,3城外
+        switch (idx){
+            case 0:
+                this.homePanel.update();
+                break;
+            case 1:
+                this.storagePanel.refresh();
+                break;
+            case 2:
+                break;
+            case 3:
+                this.btnGroup.visible = false;
+                this.bagPanel.visible = true;
+                break;
+        }
     }
 
     private goHome():void{
-        Message.instance.localSend(LocalId.SHOW_MESSAGE, ["go home"]);
         StorageMag.instance.addBag(BagMag.instance.itemList);
         BagMag.instance.cleanAll();
-        this.storagePanel.refresh();
-        this.fightPan.visible = false;
-        this.bagPanel.visible = false;
-        this.btnGroup.visible = true;
-        this.btnGroup.setCurBtn(0);
+        this.mainBtnClk(0);
     }
 
 }
