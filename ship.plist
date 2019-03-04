@@ -14,7 +14,7 @@
         <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.oasgames.ios.msfen</string>
+                <string>com.lvmax.appstore.mali</string>
                 <key>bundle-version</key>
                 <string>1.1.0</string>
                 <key>kind</key>
@@ -22,7 +22,7 @@
                 <key>releaseNotes</key>
                 <string>1.1版本发布</string>
                 <key>title</key>
-                <string>testDemo</string>
+                <string>trunk</string>
             </dict>
         </dict>
     </array></dict></plist>
