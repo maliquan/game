@@ -8,7 +8,7 @@
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
-                    <string>http://192.168.102.199/trunk.ipa</string>
+                    <string>http://192.168.100.205/trunk.ipa</string>
                 </dict>
             </array>
         <key>metadata</key>
