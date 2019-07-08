@@ -14,7 +14,7 @@
         <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.lvmax.appstore.mali</string>
+                <string>com.jiandui.ctp</string>
                 <key>bundle-version</key>
                 <string>1.1.0</string>
                 <key>kind</key>
