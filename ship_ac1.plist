@@ -8,13 +8,13 @@
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
-                    <string>http://192.168.102.199/ac1.ipa</string>
+                    <string>http://192.168.100.88/ac1.ipa</string>
                 </dict>
             </array>
         <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.lvmax.appstore.mali</string>
+                <string>com.jiandui.ctp</string>
                 <key>bundle-version</key>
                 <string>1.1.0</string>
                 <key>kind</key>
@@ -22,7 +22,7 @@
                 <key>releaseNotes</key>
                 <string>1.1版本发布</string>
                 <key>title</key>
-                <string>ac1</string>
+                <string>trunk</string>
             </dict>
         </dict>
     </array></dict></plist>
