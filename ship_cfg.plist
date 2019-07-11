@@ -8,7 +8,7 @@
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
-                    <string>http://192.168.100.88/ac1.ipa</string>
+                    <string>http://192.168.100.88/cfg.ipa</string>
                 </dict>
             </array>
         <key>metadata</key>
